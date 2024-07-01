@@ -10,5 +10,6 @@ public class BST {
 		myBst.insert(52);
 		myBst.insert(27);
 		System.out.println(myBst.root.left.right.value);
+		System.out.println(myBst.contains(18));
 	}
 }
