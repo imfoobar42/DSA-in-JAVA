@@ -23,8 +23,8 @@ public class Stack {
         return height;
     }
 
-    public Node getTop() {
-        return top;
+    public int getTop() {
+        return top.value;
     }
     public void push(int value){
         Node node = new Node(value);
