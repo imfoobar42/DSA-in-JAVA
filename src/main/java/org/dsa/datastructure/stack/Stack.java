@@ -5,6 +5,7 @@ public class Stack {
     private  Node top;
     private int height;
 
+
     class Node{
 
         int value;
@@ -16,6 +17,7 @@ public class Stack {
 
     public Stack(int value){
         Node newNode = new Node(value);
+        top = newNode;
         height = 1;
     }
 
@@ -26,7 +28,7 @@ public class Stack {
     public int getTop() {
         return top.value;
     }
-    public void push(int value){
+    public void push(int value){ //Similar to prepending an item in LL
         Node node = new Node(value);
         if(top==null)  top = node;
         else {
@@ -35,11 +37,19 @@ public class Stack {
         }
         ++height;
     }
-    public int pop(){
-        if(top==null) return 0;
+    public Node pop(){
+        if(top==null) return null;
         Node temp = top;
         top = top.next;
+        temp.next = null;
         --height;
-        return temp.value;
+        return temp;
+    }
+    public void printStack(){
+        Node temp = top;
+        while(temp!=null){
+            System.out.println(temp.value);
+            temp = temp.next;
+        }
     }
 }
