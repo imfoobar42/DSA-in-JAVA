@@ -32,7 +32,7 @@ public class Queue {
     }
 
     //insert , delete
-    public void insert(int value){ //insertion at Rear
+    public void enQueue(int value){ //insertion at Rear
         Node tempNode = new Node(value);
         if(length==0){
             front = tempNode;
@@ -44,12 +44,17 @@ public class Queue {
         }
         ++length;
     }
-    public Node delete(){   //Deletion at front
+    public Node deQueue(){   //Deletion at front
         //(front==rear) can create confusion -> for only 1 element and no element
         if (length==0) return null;
         Node temp = front;
-        front = front.next;
-        temp.next = null;
+        if(length==1){ //Edge case when only 1 value present
+            front = null;
+            rear = null;
+        }else{
+            front = front.next;
+            temp.next = null;
+        }
         --length;
         return  temp;
     }
