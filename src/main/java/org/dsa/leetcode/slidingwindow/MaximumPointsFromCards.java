@@ -4,22 +4,35 @@ package org.dsa.leetcode.slidingwindow;
 //cardPoints = [1,2,3,4,5,6,1], k = 3
 class MaximumPointsFromCards {
     public static int maxScore(int[] cardPoints, int k) {
-    int left =0, right=cardPoints.length-1, countLeft = 0, countRight=0, maxSum = 0;
-    int count = 0;
-    while(k!= cardPoints.length && left<=right && ++count<=k){
-        if(cardPoints[left]>cardPoints[right])  ++countLeft;
-        else ++countRight;
-    }
-    if(countRight<countLeft) right = k-1;
-    else left = right - k+1;
-    // l = 7, k =3 456 , l-k //6-3
+        int n = cardPoints.length;
+        int totalSum = 0, l =0;
 
-    for (int sumPointer = left; sumPointer <=right ; sumPointer++) {
-            maxSum += cardPoints[sumPointer];
+        // Calculate total sum of all card points
+        for (int point : cardPoints) {
+            totalSum += point;
         }
 
-    return maxSum;
+        // If we need to take all cards
+        if (n == k)
+            return totalSum;
+
+        // Find the minimum sum of n-k elements window
+        int windowSum = 0;
+        int minWindowSum = Integer.MAX_VALUE;
+
+        // Calculate the initial window sum for the first n-k elements
+        //TC : O(n) SC:O(1)
+        for (int r = 0; r < n; r++) {
+            windowSum += cardPoints[r];
+            if(r-l+1 >= n-k){ //shift once window size equal n-k
+                minWindowSum = minWindowSum <= windowSum ? minWindowSum : windowSum;
+                windowSum -= cardPoints[l++];
+            }
+        }
+
+        return totalSum - minWindowSum;
     }
+
 
     public static void main(String[] args) {
         int[] arr = {9,7,7,9,7,7,9};
