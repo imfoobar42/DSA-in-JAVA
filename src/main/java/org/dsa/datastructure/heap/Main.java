@@ -5,7 +5,7 @@ package org.dsa.datastructure.heap;
 public class Main {
 
   public static void main(String[] args) {
-    Heap myHeap = new Heap();
+    MaxHeap myHeap = new MaxHeap();
     myHeap.insert(99);
     myHeap.insert(37);
     myHeap.insert(89);
@@ -15,6 +15,8 @@ public class Main {
     myHeap.insert(100);
     System.out.println(myHeap.getHeap());
     myHeap.insert(75);
+    System.out.println(myHeap.getHeap());
+    myHeap.remove();
     System.out.println(myHeap.getHeap());
   }
 }

@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Graph {
     protected HashMap<String, ArrayList<String>> adjList = new HashMap<>();
 
-    public HashMap<String, ArrayList<String>> getAdjList() {
+    public  HashMap<String, ArrayList<String>> getAdjList() {
         return adjList;
     }
     public void printGraph(){
@@ -14,12 +14,10 @@ public class Graph {
     }
     //addVertex - remove Vertex
     //addEdge - removeEdge
-    public boolean addVertex(String vertex){
+    public void addVertex(String vertex){
         if(adjList.get(vertex)==null){
             adjList.put(vertex, new ArrayList<String>());
-            return true;
         }
-        return  false;
     }
     public boolean addEdge(String vertex1, String vertex2){
        if(adjList.get(vertex1)!=null && adjList.get(vertex2)!=null){
